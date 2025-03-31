@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation App</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background-color: #1e1e1e;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2rem;
+        }
+        select, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: none;
+        }
+        select {
+            background-color: #333;
+            color: white;
+        }
+        button {
+            background-color: #ff4757;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #e84118;
+        }
+        #movieList {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .movie {
+            padding: 15px;
+            border: 1px solid #ff4757;
+            margin: 10px;
+            display: inline-block;
+            width: 250px;
+            background-color: #2d2d2d;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            box-shadow: 0px 4px 10px rgba(255, 71, 87, 0.5);
+        }
+        .movie:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 15px rgba(255, 71, 87, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <h1>Movie Recommendation App</h1>
+    <p>Choose a genre to get movie recommendations:</p>
+    <select id="genre">
+        <option value="action">Action</option>
+        <option value="comedy">Comedy</option>
+        <option value="drama">Drama</option>
+        <option value="horror">Horror</option>
+        <option value="sci-fi">Sci-Fi</option>
+    </select>
+    <button onclick="getMovies()">Get Movies</button>
+    
+    <div id="movieList"></div>
+
+    <script>
+        const movieData = {
+            action: ["Mad Max: Fury Road", "John Wick", "The Dark Knight"],
+            comedy: ["Superbad", "The Hangover", "Step Brothers"],
+            drama: ["The Shawshank Redemption", "Forrest Gump", "Fight Club"],
+            horror: ["The Conjuring", "A Nightmare on Elm Street", "It"],
+            "sci-fi": ["Inception", "Interstellar", "Blade Runner 2049"]
+        };
+        
+        function getMovies() {
+            let genre = document.getElementById("genre").value;
+            let movies = movieData[genre];
+            let movieList = document.getElementById("movieList");
+            
+            movieList.innerHTML = "";
+            movies.forEach(movie => {
+                let div = document.createElement("div");
+                div.className = "movie";
+                div.textContent = movie;
+                movieList.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>
